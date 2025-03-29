@@ -3,9 +3,13 @@ package com.users.userservice.controller;
 import com.users.userservice.dto.request.LogingRequestDto;
 import com.users.userservice.dto.response.LoginResponseDto;
 import com.users.userservice.services.RegistrationService;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@Slf4j
 @RestController
 @RequestMapping("/access-management")
 public class LoginController {
@@ -21,9 +25,9 @@ public class LoginController {
         registrationService.registerUser(loginRequestDto);
         return ResponseEntity.accepted().build();
     }
-    @PostMapping("/login")
-    public ResponseEntity<LoginResponseDto> login(@RequestBody LogingRequestDto logingRequestDto) {
-        LoginResponseDto responseDto=registrationService.login(logingRequestDto);
+    @PostMapping(value = "/login",produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Object> login(@RequestBody LogingRequestDto loginRequestDto) {
+        LoginResponseDto responseDto = registrationService.login(loginRequestDto);
         return ResponseEntity.ok(responseDto);
     }
 

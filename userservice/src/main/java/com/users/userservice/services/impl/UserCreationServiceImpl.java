@@ -28,10 +28,11 @@ public class UserCreationServiceImpl implements UserCreationService {
         user.setCreatedAt(LocalDateTime.now());
         user.setPasswordHash(EncryptPassword(logingRequestDto.getPassword()));
         user.setRoles(getRole(logingRequestDto.getRoleId()));
-        return null;
+        return user;
     }
 
-    private String EncryptPassword(String password) {
+    private String EncryptPassword(String password)
+    {
         return bCryptPasswordEncoder.encode(password);
     }
 

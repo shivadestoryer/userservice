@@ -11,7 +11,7 @@ public class UserProfile {
 
     @Id
     @Column(name = "user_id")
-    private Long userId;
+    private int userId;
 
     @OneToOne
     @MapsId
